@@ -12,11 +12,11 @@
 */
 
 Route::get('/', function() {
-	redirect('/webinar');
+	return redirect('/webinar');
 });
 
 Route::get('home', function() {
-	redirect('/webinar');
+	return redirect('/webinar');
 });
 
 
