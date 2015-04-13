@@ -11,9 +11,14 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', function() {
+	redirect('/webinar');
+});
 
-Route::get('home', 'HomeController@index');
+Route::get('home', function() {
+	redirect('/webinar');
+});
+
 
 Route::resource('webinar', 'WebinarController');
 
