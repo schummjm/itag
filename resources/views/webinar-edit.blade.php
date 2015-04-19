@@ -32,48 +32,42 @@
 						</div>
 						<hr/>
 						<h4>Actions <span style="font-size:12px;">(will apply Infusionsoft tag if a person is NOT present on the webinar during the time frame)</span></h4>
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="row">
-									<div class="col-sm-12">
-										<div class="form-group">
-											<label>Action Name</label>
-											<input type="text" class="form-control" name="action_name" placeholder="" />
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label>Start Time</label>
-											<input type="time" class="form-control" name="start_time" placeholder="" />
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label>End Time</label>
-											<input type="time" class="form-control" name="end_time" placeholder="" />
-										</div>
-									</div>
+						@foreach($actions as $action)
+						<input type="hidden" name="action_id[]" value="{{ $action->id }}">
+						<div class="row action">
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label>Action Name</label>
+									<input type="text" class="form-control" name="action_name[]" placeholder="" required value="{{ $action->name }}" />
 								</div>
 							</div>
-							<div class="col-sm-6">
-								<div class="row">
-									<div class="col-sm-12">
-										<div class="form-group">
-											<label>Infusionsoft Tag Name (for reference)</label>
-											<input type="text" class="form-control" name="tag_name" placeholder="" />
-										</div>
-									</div>
-									<div class="col-sm-12">
-										<div class="form-group">
-											<label>Infusionsoft Tag Id</label>
-											<input type="text" class="form-control" name="tag_id" placeholder="" />
-										</div>
-									</div>
+							<div class="col-sm-2">
+								<div class="form-group">
+									<label>Start Time</label>
+									<input type="time" class="form-control" name="start_time[]" placeholder="" required value="{{ $action->start_time }}" />
+								</div>
+							</div>
+							<div class="col-sm-2">
+								<div class="form-group">
+									<label>End Time</label>
+									<input type="time" class="form-control" name="end_time[]" placeholder="" required value="{{ $action->end_time }}" />
+								</div>
+							</div>
+							<div class="col-sm-2">
+								<div class="form-group">
+									<label>Tag Id</label>
+									<input type="text" class="form-control" name="tag_id[]" placeholder="" required value="{{ $action->tag_id }}" />
+								</div>
+							</div>
+							<div class="col-sm-2">
+								<div class="form-group">
+									<a href="/action/delete/{{ $webinar->id }}/{{ $action->id }}" class="btn btn-danger" style="margin-top:24px;">Delete Action</a>
 								</div>
 							</div>
 						</div>
+						@endforeach
+						<button type="button" class="btn btn-warning" id="more-actions">Add Another Action</button>
+						<hr/>
 						<button type="submit" class="btn btn-primary" style="float:right;">Save Webinar</button>
 					</form>
 					<a href="/webinar"><button class="btn btn-danger">Cancel</button></a>
@@ -82,4 +76,24 @@
 		</div>
 	</div>
 </div>
+<style>
+.action {
+	margin-bottom:10px;
+}
+</style>
+<script>
+jQuery(document).ready(function() {
+	var i = 1;
+	jQuery('#more-actions').on('click', function() {
+
+		jQuery('<div class="row action" id="'+i+'"><input type="hidden" name="action_id[]" value=""><div class="col-sm-4"><div class="form-group"><label>Action Name</label><input type="text" class="form-control" name="action_name[]" placeholder="" required /></div></div><div class="col-sm-2"><div class="form-group"><label>Start Time</label><input type="time" class="form-control" name="start_time[]" placeholder="" required /></div></div><div class="col-sm-2"><div class="form-group"><label>End Time</label><input type="time" class="form-control" name="end_time[]" placeholder="" required /></div></div><div class="col-sm-2"><div class="form-group"><label>Tag Id</label><input type="text" class="form-control" name="tag_id[]" placeholder="" required /></div></div><div class="col-sm-2"><div class="form-group"><button class="btn btn-danger"  type="button" style="margin-top:24px;" onClick="deleteMe(\'#'+i+'\')">Delete Action</button></div></div></div>').insertBefore('#more-actions');
+		i++;
+
+	});
+});
+function deleteMe(theid) {
+	jQuery(theid).hide();
+}
+
+</script>
 @endsection

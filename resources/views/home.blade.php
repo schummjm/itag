@@ -9,24 +9,35 @@
 
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-sm-6">
+						<div class="col-sm-3">
+							Webinar Date
+						</div>
+						<div class="col-sm-3">
 							Webinar Name
 						</div>
-						<div class="col-sm-6">
-							Webinar Date
+						<div class="col-sm-3">
+							Viewers
+						</div>
+						<div class="col-sm-3">
+							Embed Script
 						</div>
 					</div>
 					@foreach( $webinars as $webinar )
-					<a href="/webinar/{{ $webinar->id }}/edit/">
 						<div class="row webinar">
-							<div class="col-sm-6">
-								{{ $webinar->webinar_name }}
-							</div>
-							<div class="col-sm-6">
+							<div class="col-sm-3">
 								{{ $webinar->webinar_date }}
 							</div>
+							<div class="col-sm-3">
+								<a href="/webinar/{{ $webinar->id }}/edit/">{{ $webinar->webinar_name }}</a>
+							</div>
+							<div class="col-sm-3">
+								<a href="/viewers/{{ $webinar->id}}">See Viewers</a>
+							</div>
+							<div class="col-sm-3">
+								<a href="/script/{{ $webinar->id}}">View Script</a>
+							</div>
 						</div>
-					</a>
+					
 					@endforeach
 				</div>
 			</div>
@@ -38,10 +49,12 @@
 	padding:20px 0px;
 	margin:10px 0px;
 	border:1px solid #c9c9c9;
-	cursor:pointer;
 }
 .webinar:hover {
 	background-color:#f9f9f9;
+}
+.webinar a {
+	text-decoration:none;
 }
 </style>
 @endsection

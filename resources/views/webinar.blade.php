@@ -30,14 +30,14 @@
 							<input type="date" class="form-control" name="webinar_date" placeholder="" />
 						</div>
 						<hr/>
-						<h4>Actions <span style="font-size:12px;">(will apply Infusionsoft tag if a person is NOT present on the webinar during the time frame)</span></h4>
+						<h4>Actions <span style="font-size:12px;">(will apply Infusionsoft tag if a person is on the webinar during the time frame)</span></h4>
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="row">
 									<div class="col-sm-12">
 										<div class="form-group">
 											<label>Action Name</label>
-											<input type="text" class="form-control" name="action_name" placeholder="" />
+											<input type="text" class="form-control" name="action_name" placeholder="" required />
 										</div>
 									</div>
 								</div>
@@ -45,13 +45,13 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>Start Time</label>
-											<input type="time" class="form-control" name="start_time" placeholder="" />
+											<input type="time" class="form-control" name="start_time" placeholder="" required />
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>End Time</label>
-											<input type="time" class="form-control" name="end_time" placeholder="" />
+											<input type="time" class="form-control" name="end_time" placeholder="" required />
 										</div>
 									</div>
 								</div>
@@ -60,19 +60,21 @@
 								<div class="row">
 									<div class="col-sm-12">
 										<div class="form-group">
-											<label>Infusionsoft Tag Name (for reference)</label>
+											<label>Infusionsoft Tag Name <small>(for reference only)</small></label>
 											<input type="text" class="form-control" name="tag_name" placeholder="" />
 										</div>
 									</div>
 									<div class="col-sm-12">
 										<div class="form-group">
 											<label>Infusionsoft Tag Id</label>
-											<input type="text" class="form-control" name="tag_id" placeholder="" />
+											<input type="text" class="form-control" name="tag_id" placeholder="" required />
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+						<hr/>
+						<button class="btn btn-warning" id="more-actions">Add More Actions</button>
 						<button type="submit" class="btn btn-primary" style="float:right;">Save Webinar</button>
 					</form>
 					<a href="/webinar"><button class="btn btn-danger">Cancel</button></a>
@@ -81,4 +83,9 @@
 		</div>
 	</div>
 </div>
+<style>
+small {
+	font-size:12px;
+}
+</style>
 @endsection

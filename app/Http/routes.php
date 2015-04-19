@@ -22,14 +22,31 @@ Route::get('home', function() {
 
 Route::resource('webinar', 'WebinarController');
 
+Route::get('viewers/{webinar_id}', 'WebinarController@viewers');
+Route::get('/action/delete/{webinar_id}/{action_id}', 'WebinarController@delete_action');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 
 ]);
-
-Route::group(['middleware' => 'auth.basic', 'prefix' => 'api'], function() {
-	Route::get('/test', function() {
-		return 'testing123 testing<br/>';
+//'middleware' => 'auth.basic', 
+Route::group(['prefix' => 'api'], function() {
+	Route::get('/test/', function(Request $request) {
+		/*    header('Access-Control-Allow-Origin: '.$_SERVER['HTTP_ORIGIN']);
+		    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+		    header('Access-Control-Max-Age: 1000');
+		    header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');*/
+		    //'response', 200, array('Access-Control-Allow-Origin' => 'http://itagtest.24techstuddev.com/', 
+		return Response::json(array('success' => true, 'data' => 'here is data'))->setCallback($_GET['callback']);
 	});
+	Route::get('/start/{webinar_id}/{email}/', 'APIController@start');
+	Route::get('/end/{webinar_id}/{email}/', 'APIController@end');
+
+
+
+});
+
+Route::group(['prefix' => 'cron'], function() {
+	Route::get('/test', );
 });
