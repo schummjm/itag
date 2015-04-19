@@ -48,5 +48,5 @@ Route::group(['prefix' => 'api'], function() {
 });
 
 Route::group(['prefix' => 'cron'], function() {
-	Route::get('/test', );
+	//Route::get('/test', );
 });
