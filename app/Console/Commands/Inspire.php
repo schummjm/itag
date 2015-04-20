@@ -42,24 +42,26 @@ class Inspire extends Command {
 			} else {
 				$offset = 5*60*60;
 			}
-			$app = new \iSDK();
 			
-			if ($app->cfgCon($webinar->app_name, $webinar->api_key)) {
-			    echo "app connected!<br/>";
-			} else {
-			    echo "connection failed!<br/>";
-			}
+			// Set up API
+			$app = new \iSDK();
+			$app->cfgCon($webinar->app_name, $webinar->api_key);
+
 			// Get all actions that have not been run
 			$actions = \App\Action::where('webinar_id', '=', $webinar->id)->where('run', '=', 0)->get();
 			foreach($actions as $action) {
+				
 				// Get webinar date in UTC
 				$utc_webinar_date = $webinar->webinar_date + $offset;
-		
+				
+				echo 'Text End Time (EST) '.$action->end_time.'<br/>';
 				$end_time = $action->end_time;
 				sscanf($end_time, "%d:%d", $hours, $minutes);
 				$end_time_seconds = $hours * 3600 + $minutes * 60;
 				$end_date_time_seconds = $end_time_seconds + $utc_webinar_date;
+				echo 'Date End Time (UTC) '.$action->end_time.'<br/>';
 				echo date('m/d/Y H:i:s', $end_date_time_seconds);
+				echo '<br/>'
 				// If end time is past, run actions
 				if (time() > $end_date_time_seconds) {
 					echo 'before viewers';
@@ -70,6 +72,7 @@ class Inspire extends Command {
 					$start_date_time_seconds = $start_time_seconds + $utc_webinar_date;
 
 					$viewers = \App\Viewer::where('webinar_id', '=', $webinar->id)->whereNotIn('email', null)->get();
+					var_dump($viewers);
 					foreach($viewers as $viewer) {
 						if ($viewer->end_time == null) {
 							$contacts = $app->findByEmail($viewer->email, array('Id'));
