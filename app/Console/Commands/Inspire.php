@@ -72,9 +72,10 @@ class Inspire extends Command {
 					$start_date_time_seconds = $start_time_seconds + $utc_webinar_date;
 
 					$viewers = \App\Viewer::where('webinar_id', '=', $webinar->id)->get();
-					var_dump($viewers);
+					//var_dump($viewers);
 					foreach($viewers as $viewer) {
 						var_dump($viewer);
+						echo '<br/><br/>';
 						if ($viewer->end_time == null) {
 							$contacts = $app->findByEmail($viewer->email, array('Id'));
 							var_dump($contacts);
