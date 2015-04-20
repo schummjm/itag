@@ -26,8 +26,11 @@ class Inspire extends Command {
 	 */
 	public function handle()
 	{
-		$this->comment(PHP_EOL.Inspiring::quote().PHP_EOL);
-		
+		$cron_log = new \App\CronLog();
+		$cron_log->info = "inspire run";
+		$cron_log->save();
+		//$this->comment(PHP_EOL.Inspiring::quote().PHP_EOL);
+
 	}
 
 }
