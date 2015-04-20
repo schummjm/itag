@@ -74,7 +74,8 @@ class Inspire extends Command {
 					$viewers = \App\Viewer::where('webinar_id', '=', $webinar->id)->get();
 					//var_dump($viewers);
 					foreach($viewers as $viewer) {
-						var_dump($viewer);
+						echo '<br/><br/>';
+						echo $viewer->email.' '.date('m/d/Y H:i:s', $viewer->start_time).' '.date('m/d/Y H:i:s', $viewer->end_time);
 						echo '<br/><br/>';
 						if ($viewer->end_time == null) {
 							$contacts = $app->findByEmail($viewer->email, array('Id'));
