@@ -19,6 +19,7 @@ Route::get('home', function() {
 	return redirect('/webinar');
 });
 
+Route::get('testcmd', 'WebinarController@cmd');
 
 Route::resource('webinar', 'WebinarController');
 

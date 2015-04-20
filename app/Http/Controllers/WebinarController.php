@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class WebinarController extends Controller {
 
+	public function cmd() {
+
+		$exitCode = \Artisan::call('inspire');
+
+	}
 
 	public function viewers($webinar_id) 
 	{
