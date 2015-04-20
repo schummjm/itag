@@ -61,7 +61,7 @@ class Inspire extends Command {
 				$end_date_time_seconds = $end_time_seconds + $utc_webinar_date;
 				echo 'Date End Time (UTC) '.$action->end_time.'<br/>';
 				echo date('m/d/Y H:i:s', $end_date_time_seconds);
-				echo '<br/>'
+				echo '<br/>';
 				// If end time is past, run actions
 				if (time() > $end_date_time_seconds) {
 					echo 'before viewers';
