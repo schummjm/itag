@@ -19,7 +19,7 @@ class CreateWebinarsTable extends Migration {
 			$table->string('api_key');
 			$table->string('webinar_name');
 			$table->string('webinar_date');
-			$table->boolean('dst')->default(0);
+			$table->boolean('dst')->default(0)->nullable();
 			$table->timestamps();
 		});
 	}
