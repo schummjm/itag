@@ -18,7 +18,7 @@ class CreateWebinarsTable extends Migration {
 			$table->string('app_name');
 			$table->string('api_key');
 			$table->string('webinar_name');
-			$table->date('webinar_date');
+			$table->string('webinar_date');
 			$table->timestamps();
 		});
 	}

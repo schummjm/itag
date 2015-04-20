@@ -36,7 +36,11 @@ class WebinarController extends Controller {
 	public function index()
 	{
 		//
-		$webinars = \App\Webinar::all();
+		$webinars = \App\Webinar::orderBy('webinar_date', 'desc')->get();
+		foreach($webinars as $webinar) {
+			$f_date = date('m/d/Y', $webinar->webinar_date);
+			$webinar->webinar_date = $f_date;
+		}
 		return view('home')->withWebinars($webinars);
 	}
 
@@ -62,7 +66,7 @@ class WebinarController extends Controller {
 		$webinar->app_name = $request->input('app_name');
 		$webinar->api_key = $request->input('api_key');
 		$webinar->webinar_name = $request->input('webinar_name');
-		$webinar->webinar_date = $request->input('webinar_date');
+		$webinar->webinar_date = strtotime($request->input('webinar_date'));
 		$webinar->save();
 		return redirect('/webinar');
 	}
@@ -87,6 +91,8 @@ class WebinarController extends Controller {
 	public function edit($id)
 	{
 		$webinar = \App\Webinar::find($id);
+		$f_date = date('Y-m-d', $webinar->webinar_date);
+		$webinar->webinar_date = $f_date;
 		$actions = \App\Action::where('webinar_id', '=', $id)->get();
 		return view('webinar-edit')->withWebinar($webinar)->withActions($actions);
 	}
@@ -104,7 +110,8 @@ class WebinarController extends Controller {
 		$webinar->app_name = $request->input('app_name');
 		$webinar->api_key = $request->input('api_key');
 		$webinar->webinar_name = $request->input('webinar_name');
-		$webinar->webinar_date = $request->input('webinar_date');
+		$webinar_timestamp = strtotime($request->input('webinar_date'));
+		$webinar->webinar_date = $webinar_timestamp;
 		$webinar->save();
 
 		for ($x = 0; $x < count($request->action_name); $x++) {

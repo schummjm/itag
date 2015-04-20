@@ -22,6 +22,7 @@ class CreateActionsTable extends Migration {
 			$table->string('end_time');
 			$table->string('tag_name')->nullable();
 			$table->string('tag_id');
+			$table->boolean('run')->default(0);
 			$table->timestamps();
 		});
 	}
