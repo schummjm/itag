@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class WebinarController extends Controller {
 
+	public function script($webinar_id) 
+	{
+		return view('script')->withId($webinar_id);
+	}
+
 	public function cmd() {
 
 		$exitCode = \Artisan::call('inspire');
@@ -16,14 +21,23 @@ class WebinarController extends Controller {
 
 	public function viewers($webinar_id) 
 	{
+		$webinar = \App\Webinar::find($webinar_id);
+		if ($webinar->dst) {
+			$offset = 4*60*60;
+		} else {
+			$offset = 5*60*60;
+		}
 		$viewers = \App\Viewer::where('webinar_id', '=', $webinar_id)->orderBy('updated_at', 'desc')->get();
 		foreach($viewers as $viewer) {
-			$f_start_time = date('H:i:s', $viewer->start_time);
+			$f_start_time = date('H:i:s', ($viewer->start_time - $offset));
 			$viewer->start_time = $f_start_time;
-			$f_end_time = date('H:i:s', $viewer->end_time);
-			$viewer->end_time = $f_end_time;
-			$f_time_spent = date('H:i:s', $viewer->time_spent);
-			$viewer->time_spent = $f_time_spent;
+			if ($viewer->end_time != null) {
+				$f_end_time = date('H:i:s', ($viewer->end_time - $offset));
+				$viewer->end_time = $f_end_time;
+				$f_time_spent = date('H:i:s', $viewer->time_spent);
+				$viewer->time_spent = $f_time_spent;
+			}
+			
 		}
 		return view('webinar-viewers')->withViewers($viewers);
 	}
@@ -67,8 +81,9 @@ class WebinarController extends Controller {
 		$webinar->api_key = $request->input('api_key');
 		$webinar->webinar_name = $request->input('webinar_name');
 		$webinar->webinar_date = strtotime($request->input('webinar_date'));
+		$webinar->dst = $request->input('dst');
 		$webinar->save();
-		return redirect('/webinar');
+		return redirect('/webinar/'.$webinar->id.'/edit');
 	}
 
 	/**
@@ -110,8 +125,8 @@ class WebinarController extends Controller {
 		$webinar->app_name = $request->input('app_name');
 		$webinar->api_key = $request->input('api_key');
 		$webinar->webinar_name = $request->input('webinar_name');
-		$webinar_timestamp = strtotime($request->input('webinar_date'));
-		$webinar->webinar_date = $webinar_timestamp;
+		$webinar->webinar_date = strtotime($request->input('webinar_date'));
+		$webinar->dst = $request->input('dst');
 		$webinar->save();
 
 		for ($x = 0; $x < count($request->action_name); $x++) {

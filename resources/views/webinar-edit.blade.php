@@ -30,6 +30,10 @@
 							<label for="webinar_date">Webinar Date</label>
 							<input type="date" class="form-control" name="webinar_date" placeholder="" value="{{ $webinar->webinar_date }}" />
 						</div>
+						<div class="form-group">
+							<label for="dst">Daylight Savings Time?</label>
+							<input type="checkbox" name="dst" id="dst" />
+						</div>
 						<hr/>
 						<h4>Actions <span style="font-size:12px;">(will apply Infusionsoft tag if a person is NOT present on the webinar during the time frame)</span></h4>
 						@foreach($actions as $action)
@@ -83,6 +87,9 @@
 </style>
 <script>
 jQuery(document).ready(function() {
+	if('{{ $webinar->dst }}') {
+		jQuery('#dst').attr('checked', 'true');
+	}
 	var i = 1;
 	jQuery('#more-actions').on('click', function() {
 

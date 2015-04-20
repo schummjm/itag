@@ -19,12 +19,14 @@ Route::get('home', function() {
 	return redirect('/webinar');
 });
 
-Route::get('testcmd', 'WebinarController@cmd');
+Route::get('testcmd', ['middleware' => 'auth', 'uses' => 'WebinarController@cmd']);
 
-Route::resource('webinar', 'WebinarController');
-
-Route::get('viewers/{webinar_id}', 'WebinarController@viewers');
-Route::get('/action/delete/{webinar_id}/{action_id}', 'WebinarController@delete_action');
+Route::group(['middleware' => 'auth'], function() {
+	Route::resource('webinar', 'WebinarController');
+	Route::get('script/{webinar_id}', 'WebinarController@script');
+});
+Route::get('viewers/{webinar_id}', ['middleware' => 'auth', 'uses' => 'WebinarController@viewers']);
+Route::get('/action/delete/{webinar_id}/{action_id}', ['middleware' => 'auth', 'uses' => 'WebinarController@delete_action']);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
