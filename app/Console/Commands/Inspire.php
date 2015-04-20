@@ -53,7 +53,7 @@ class Inspire extends Command {
 			$actions = \App\Action::where('webinar_id', '=', $webinar->id)->where('run', '=', 0)->get();
 			foreach($actions as $action) {
 				// Get webinar date in UTC
-				$utc_webinar_date = $webinar->webinar_date - $offset;
+				$utc_webinar_date = $webinar->webinar_date + $offset;
 		
 				$end_time = $action->end_time;
 				sscanf($end_time, "%d:%d", $hours, $minutes);
