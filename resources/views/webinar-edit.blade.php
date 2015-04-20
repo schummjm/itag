@@ -32,7 +32,7 @@
 						</div>
 						<div class="form-group">
 							<label for="dst">Daylight Savings Time?</label>
-							<input type="checkbox" name="dst" id="dst" />
+							<input type="checkbox" name="dst" id="dst" value="1" />
 						</div>
 						<hr/>
 						<h4>Actions <span style="font-size:12px;">(will apply Infusionsoft tag if a person is NOT present on the webinar during the time frame)</span></h4>
@@ -87,7 +87,7 @@
 </style>
 <script>
 jQuery(document).ready(function() {
-	if('{{ $webinar->dst }}') {
+	if('{{ $webinar->dst }}' == 1) {
 		jQuery('#dst').attr('checked', 'true');
 	}
 	var i = 1;

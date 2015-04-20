@@ -31,7 +31,7 @@
 						</div>
 						<div class="form-group">
 							<label for="dst">Daylight Savings Time?</label>
-							<input type="checkbox" name="dst" />
+							<input type="checkbox" name="dst" value="1" />
 						</div>
 						<button type="submit" class="btn btn-primary" style="float:right;">Save Webinar</button>
 					</form>

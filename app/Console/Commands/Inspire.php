@@ -71,7 +71,7 @@ class Inspire extends Command {
 					$start_time_seconds = $hours * 3600 + $minutes * 60;
 					$start_date_time_seconds = $start_time_seconds + $utc_webinar_date;
 
-					$viewers = \App\Viewer::where('webinar_id', '=', $webinar->id)->whereNotIn('email', null)->get();
+					$viewers = \App\Viewer::where('webinar_id', '=', $webinar->id)->get();
 					var_dump($viewers);
 					foreach($viewers as $viewer) {
 						var_dump($viewer);
