@@ -59,7 +59,7 @@ class Inspire extends Command {
 				sscanf($end_time, "%d:%d", $hours, $minutes);
 				$end_time_seconds = $hours * 3600 + $minutes * 60;
 				$end_date_time_seconds = $end_time_seconds + $utc_webinar_date;
-				echo 'Date End Time (UTC) '.$action->end_time.'<br/>';
+				echo 'Date End Time (UTC) ';
 				echo date('m/d/Y H:i:s', $end_date_time_seconds);
 				echo '<br/>';
 				// If end time is past, run actions
@@ -74,6 +74,7 @@ class Inspire extends Command {
 					$viewers = \App\Viewer::where('webinar_id', '=', $webinar->id)->whereNotIn('email', null)->get();
 					var_dump($viewers);
 					foreach($viewers as $viewer) {
+						var_dump($viewer);
 						if ($viewer->end_time == null) {
 							$contacts = $app->findByEmail($viewer->email, array('Id'));
 							var_dump($contacts);
