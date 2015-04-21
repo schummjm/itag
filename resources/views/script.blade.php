@@ -10,7 +10,7 @@
 				<div class="panel-body">
 					<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
 jQuery(document).ready(function() {
-	var webinar_id = 1;
+	var webinar_id = {{ $id }};
 	var email = getURLParameter('email');
 	if (email != null) {
 		jQuery.ajax
