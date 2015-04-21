@@ -23,9 +23,9 @@ class Kernel extends ConsoleKernel {
 	protected function schedule(Schedule $schedule)
 	{
 		// log cron running
-		$cron_log = new \App\CronLog();
+		/*$cron_log = new \App\CronLog();
 		$cron_log->info = "Kernel Running";
-		$cron_log->save();
+		$cron_log->save();*/
 		$schedule->command('inspire')->everyFiveMinutes();
 	}
 
