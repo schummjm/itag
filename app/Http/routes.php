@@ -24,6 +24,7 @@ Route::get('testcmd', ['middleware' => 'auth', 'uses' => 'WebinarController@cmd'
 Route::group(['middleware' => 'auth'], function() {
 	Route::resource('webinar', 'WebinarController');
 	Route::get('script/{webinar_id}', 'WebinarController@script');
+	Route::get('actions/{webinar_id}', 'WebinarController@actions');
 });
 Route::get('viewers/{webinar_id}', ['middleware' => 'auth', 'uses' => 'WebinarController@viewers']);
 Route::get('/action/delete/{webinar_id}/{action_id}', ['middleware' => 'auth', 'uses' => 'WebinarController@delete_action']);

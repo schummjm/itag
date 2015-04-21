@@ -35,7 +35,7 @@
 							<input type="checkbox" name="dst" id="dst" value="1" />
 						</div>
 						<hr/>
-						<h4>Actions <span style="font-size:12px;">(will apply Infusionsoft tag if a person is NOT present on the webinar during the time frame)</span></h4>
+						<h4>Actions <span style="font-size:12px;">(will apply Infusionsoft tag if a person is present on the webinar during the time frame)</span></h4>
 						@foreach($actions as $action)
 						<input type="hidden" name="action_id[]" value="{{ $action->id }}">
 						<div class="row action">
@@ -47,13 +47,13 @@
 							</div>
 							<div class="col-sm-2">
 								<div class="form-group">
-									<label>Start Time</label>
+									<label>Start Time (EST)</label>
 									<input type="time" class="form-control" name="start_time[]" placeholder="" required value="{{ $action->start_time }}" />
 								</div>
 							</div>
 							<div class="col-sm-2">
 								<div class="form-group">
-									<label>End Time</label>
+									<label>End Time (EST)</label>
 									<input type="time" class="form-control" name="end_time[]" placeholder="" required value="{{ $action->end_time }}" />
 								</div>
 							</div>
@@ -93,7 +93,7 @@ jQuery(document).ready(function() {
 	var i = 1;
 	jQuery('#more-actions').on('click', function() {
 
-		jQuery('<div class="row action" id="'+i+'"><input type="hidden" name="action_id[]" value=""><div class="col-sm-4"><div class="form-group"><label>Action Name</label><input type="text" class="form-control" name="action_name[]" placeholder="" required /></div></div><div class="col-sm-2"><div class="form-group"><label>Start Time</label><input type="time" class="form-control" name="start_time[]" placeholder="" required /></div></div><div class="col-sm-2"><div class="form-group"><label>End Time</label><input type="time" class="form-control" name="end_time[]" placeholder="" required /></div></div><div class="col-sm-2"><div class="form-group"><label>Tag Id</label><input type="text" class="form-control" name="tag_id[]" placeholder="" required /></div></div><div class="col-sm-2"><div class="form-group"><button class="btn btn-danger"  type="button" style="margin-top:24px;" onClick="deleteMe(\'#'+i+'\')">Delete Action</button></div></div></div>').insertBefore('#more-actions');
+		jQuery('<div class="row action" id="'+i+'"><input type="hidden" name="action_id[]" value=""><div class="col-sm-4"><div class="form-group"><label>Action Name</label><input type="text" class="form-control" name="action_name[]" placeholder="" required /></div></div><div class="col-sm-2"><div class="form-group"><label>Start Time (EST)</label><input type="time" class="form-control" name="start_time[]" placeholder="" required /></div></div><div class="col-sm-2"><div class="form-group"><label>End Time (EST)</label><input type="time" class="form-control" name="end_time[]" placeholder="" required /></div></div><div class="col-sm-2"><div class="form-group"><label>Tag Id</label><input type="text" class="form-control" name="tag_id[]" placeholder="" required /></div></div><div class="col-sm-2"><div class="form-group"><button class="btn btn-danger"  type="button" style="margin-top:24px;" onClick="deleteMe(\'#'+i+'\')">Delete Action</button></div></div></div>').insertBefore('#more-actions');
 		i++;
 
 	});

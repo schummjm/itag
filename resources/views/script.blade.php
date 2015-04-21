@@ -35,7 +35,7 @@ console.log(vars);
     return query_string;
 } ();
 console.log(QueryString);
-	var webinar_id = 1;
+	var webinar_id = {{ $id }};
 	var email = QueryString.Email;
         email = email.replace(&quot;%2540&quot;, &quot;@&quot;);
 console.log(email);
@@ -45,7 +45,7 @@ console.log(id);
 		jQuery.ajax
 		({
 		  type: &quot;GET&quot;,
-		  url: &quot;http://itag.dev:8000/api/start/&quot;+webinar_id+&quot;/&quot;+email+&quot;/&quot;+id+&quot;/&quot;,
+		  url: &quot;http://itag.visiontechteam.com/api/start/&quot;+webinar_id+&quot;/&quot;+email+&quot;/&quot;+id+&quot;/&quot;,
 		  dataType: &quot;jsonp&quot;,
 		  async: false,
 		  crossDomain:true,
@@ -60,7 +60,7 @@ jQuery(window).bind('beforeunload', function(event) {
 		        jQuery.ajax
 			({
 			  type: &quot;GET&quot;,
-			  url: &quot;http://itag.dev:8000/api/end/&quot;+webinar_id+&quot;/&quot;+email+&quot;/&quot;+id+&quot;/&quot;,
+			  url: &quot;http://itag.visiontechteam.com/api/end/&quot;+webinar_id+&quot;/&quot;+email+&quot;/&quot;+id+&quot;/&quot;,
 			  dataType: &quot;jsonp&quot;,
 			  async: false,
 			  crossDomain:true,

@@ -13,11 +13,11 @@
 							<div class="col-sm-2">
 								<button class="btn" type="button">{{ $webinar->webinar_date }}</button>
 							</div>
-							<div class="col-sm-5">
+							<div class="col-sm-4">
 								<h4>{{ $webinar->webinar_name }}</h4>
 							</div>
-							<div class="col-sm-5 force-right">
-								<a class="btn btn-success" href="/testcmd" target="_blank">Apply Tags</a><a class="btn btn-warning" href="/viewers/{{ $webinar->id}}">Viewers</a><a class="btn btn-info" href="/script/{{ $webinar->id}}">Script</a><a class="btn btn-primary" href="/webinar/{{ $webinar->id }}/edit/">Edit</a>
+							<div class="col-sm-6 force-right">
+								<a class="btn btn-warning" href="/actions/{{ $webinar->id }}">Action Log</a><a class="btn btn-success" href="/viewers/{{ $webinar->id}}">Viewers</a><a class="btn btn-info" href="/script/{{ $webinar->id}}">Get Script</a><a class="btn btn-primary" href="/webinar/{{ $webinar->id }}/edit/">Edit Webinar</a>
 							</div>
 						</div>
 						<hr/>

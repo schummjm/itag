@@ -33,7 +33,8 @@ class Inspire extends Command {
 		$cron_log = new \App\CronLog();
 		$cron_log->info = "cron job run";
 		$cron_log->save();
-		echo 'Go through all webinars after: '.date('m/d/Y H:i:s', time()-60*60*40);
+		//echo 'Go through all webinars after: '.date('m/d/Y H:i:s', time()-60*60*40);
+		Log::debug('Start Script');
 		Log::debug('Go through all webinars after: '.date('m/d/Y H:i:s', time()-60*60*40));
 		// Get all current and future webinars
 		$webinars = \App\Webinar::where('webinar_date', '>', time()-60*60*40)->get();
@@ -56,13 +57,13 @@ class Inspire extends Command {
 				// Get webinar date in UTC
 				$utc_webinar_date = $webinar->webinar_date + $offset;
 				
-				echo '<br/>Action End Time (EST) '.$action->end_time;
+				//echo '<br/>Action End Time (EST) '.$action->end_time;
 				Log::debug('<br/>Action End Time (EST) '.$action->end_time);
 				$end_time = $action->end_time;
 				sscanf($end_time, "%d:%d", $hours, $minutes);
 				$end_time_seconds = $hours * 3600 + $minutes * 60;
 				$end_date_time_seconds = $end_time_seconds + $utc_webinar_date;
-				echo '<br/>Action End Time (UTC) '.date('m/d/Y H:i:s', $end_date_time_seconds).'<br/>';
+				//echo '<br/>Action End Time (UTC) '.date('m/d/Y H:i:s', $end_date_time_seconds).'<br/>';
 				Log::debug('<br/>Action End Time (UTC) '.date('m/d/Y H:i:s', $end_date_time_seconds).'<br/>');
 				// If end time is past, run actions
 				if (time() > $end_date_time_seconds) {
@@ -77,19 +78,22 @@ class Inspire extends Command {
 					$viewers = \App\Viewer::where('webinar_id', '=', $webinar->id)->get();
 					//var_dump($viewers);
 					foreach($viewers as $viewer) {
-						echo '<br/>Viewer Info: '.$viewer->contact_id.' | '.$viewer->email.' | '.date('m/d/Y H:i:s', $viewer->start_time).' | '.date('m/d/Y H:i:s', $viewer->end_time).'<br/>';
-						//echo '<br/><br/>';
+						//echo '<br/>Viewer Info: '.$viewer->contact_id.' | '.$viewer->email.' | '.date('m/d/Y H:i:s', $viewer->start_time).' | '.date('m/d/Y H:i:s', $viewer->end_time).'<br/>';
+						Log::debug('<br/>Viewer Info: '.$viewer->contact_id.' | '.$viewer->email.' | '.date('m/d/Y H:i:s', $viewer->start_time).' | '.date('m/d/Y H:i:s', $viewer->end_time).'<br/>');
 						if ($viewer->contact_id != null) {
 							if ($viewer->end_time == null || ($viewer->end_time > $start_date_time_seconds && $viewer->start_time < $end_date_time_seconds) ) {
 								$result = $app->grpAssign($viewer->contact_id, $action->tag_id);
-								echo 'Tag Application Infusionsoft Response: '.$result.'<br/>';
+								//echo 'Tag Application Infusionsoft Response: '.$result.'<br/>';
+								Log::debug('Tag Application Infusionsoft Response: '.$result.'<br/>');
 								$viewer->tags = $viewer->tags.$action->tag_id.', ';
 								$viewer->save();
 							} else {
-								echo 'User Not In Time Frame<br/>';
+								//echo 'User Not In Time Frame<br/>';
+								Log::debug('User Not In Time Frame<br/>');
 							}
 						} else {
-							echo 'Error: No Contact Id<br/>';
+							//echo 'Error: No Contact Id<br/>';
+							Log::debug('Error: No Contact Id<br/>');
 						}
 					}
 					// Mark action as run
@@ -103,7 +107,7 @@ class Inspire extends Command {
 		
 		}
 
-		echo '<br/><br/>End Script';
+		Log::debug('<br/><br/>End Script');
 
 	}
 

@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class WebinarController extends Controller {
 
+	public function actions($webinar_id)
+	{
+		$actions = \App\Action::where('webinar_id', '=', $webinar_id)->get();
+		return view('actions')->withActions($actions);
+	}
+
 	public function script($webinar_id) 
 	{
 		return view('script')->withId($webinar_id);
