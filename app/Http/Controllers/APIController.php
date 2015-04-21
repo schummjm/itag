@@ -8,17 +8,18 @@ use Response;
 
 class APIController extends Controller {
 
-	public function start($webinar_id, $email) {
+	public function start($webinar_id, $email, $contact_id) {
 		$viewer = new \App\Viewer();
 		$viewer->webinar_id = $webinar_id;
+		$viewer->contact_id = $contact_id;
 		$viewer->email = $email;
 		$viewer->start_time = time();
 		$viewer->save();
 		return Response::json(array('success' => true))->setCallback($_GET['callback']);
 	}
 
-	public function end($webinar_id, $email) {
-		$viewer = \App\Viewer::where('webinar_id', '=', $webinar_id)->where('email', '=', $email)->orderBy('created_at', 'desc')->first();
+	public function end($webinar_id, $email, $contact_id) {
+		$viewer = \App\Viewer::where('webinar_id', '=', $webinar_id)->where('contact_id', '=', $contact_id)->orderBy('created_at', 'desc')->first();
 		$viewer->end_time = time();
 		$viewer->time_spent = time() - $viewer->start_time;
 		$viewer->save();

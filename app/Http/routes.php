@@ -43,8 +43,8 @@ Route::group(['prefix' => 'api'], function() {
 		    //'response', 200, array('Access-Control-Allow-Origin' => 'http://itagtest.24techstuddev.com/', 
 		return Response::json(array('success' => true, 'data' => 'here is data'))->setCallback($_GET['callback']);
 	});
-	Route::get('/start/{webinar_id}/{email}/', 'APIController@start');
-	Route::get('/end/{webinar_id}/{email}/', 'APIController@end');
+	Route::get('/start/{webinar_id}/{email}/{contact_id}/', 'APIController@start');
+	Route::get('/end/{webinar_id}/{email}/{contact_id}/', 'APIController@end');
 
 
 

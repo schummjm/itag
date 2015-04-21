@@ -11,22 +11,24 @@
 					<table class="table">
 						<thead>
 							<tr>
+								<th width="100">Contact ID</th>
 								<th>Email</th>
-								<th>Start Time</th>
-								<th>End Time</th>
-								<th>Time Spent</th>
+								<th width="100">Start Time</th>
+								<th width="100">End Time</th>
+								<th width="100">Time Spent</th>
+								<th>Tags</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach($viewers as $viewer)
 							<tr>
+								<td>{{ $viewer->contact_id }}</td>
 								<td>{{ $viewer->email }}</td>
 								<td>{{ $viewer->start_time }}</td>
 								<td>{{ $viewer->end_time }}</td>
 								<td>{{ $viewer->time_spent }}</td>
+								<td>{{ $viewer->tags }}</td>
 							</tr>
-					
-						
 							@endforeach
 						</tbody>
 					</table>
