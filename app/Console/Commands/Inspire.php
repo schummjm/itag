@@ -78,21 +78,21 @@ class Inspire extends Command {
 					//var_dump($viewers);
 					foreach($viewers as $viewer) {
 						//echo '<br/><br/>';
-						//echo $viewer->email.' '.date('m/d/Y H:i:s', $viewer->start_time).' '.date('m/d/Y H:i:s', $viewer->end_time);
+						echo $viewer->email.' '.date('m/d/Y H:i:s', $viewer->start_time).' '.date('m/d/Y H:i:s', $viewer->end_time);
 						//echo '<br/><br/>';
 						if ($viewer->email != null) {
 							if ($viewer->end_time == null) {
 								$contacts = $app->findByEmail($viewer->email, array('Id'));
 								//var_dump($contacts);
 								if ($contacts != []) {
-									//echo $contacts[0]['Id'];
+									echo $contacts[0]['Id'];
 									$app->grpAssign($contacts[0]['Id'], $action->tag_id);
 								}
 							} else if ( $viewer->end_time > $start_time_seconds ) {
 								$contacts = $app->findByEmail($viewer->email, array('Id'));
 								//var_dump($contacts);
 								if ($contacts != []) {
-									//echo $contacts[0]['Id'];
+									echo $contacts[0]['Id'];
 									$app->grpAssign($contacts[0]['Id'], $action->tag_id);
 								}
 							}
@@ -105,15 +105,8 @@ class Inspire extends Command {
 			
 		
 		}
-		$actions = \App\Action::all();
-		foreach($actions as $action) {
-			if (!$action->run) {
-				if ($action) {
 
-				}
-			}
-		}
-		//$this->comment(PHP_EOL.Inspiring::quote().PHP_EOL);
+		echo 'Tags Applied';
 
 	}
 
