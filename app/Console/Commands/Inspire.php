@@ -2,6 +2,7 @@
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;
+use Log;
 
 require_once(app_path().'/Includes/infusionsoft/php-isdk/src/isdk.php');
 
