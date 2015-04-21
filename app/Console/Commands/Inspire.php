@@ -34,7 +34,7 @@ class Inspire extends Command {
 		$cron_log->save();
 		echo date('m/d/Y H:i:s', time()-5-60*60*24);
 		// Get all current and future webinars
-		$webinars = \App\Webinar::where('webinar_date', '>', time()-5-60*60*24)->get();
+		$webinars = \App\Webinar::where('webinar_date', '>', time()-10-60*60*24)->get();
 		foreach($webinars as $webinar) {
 			// set offsets for EST based on Daylight Savings
 			if ($webinar->dst) {
