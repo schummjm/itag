@@ -54,17 +54,20 @@ class Inspire extends Command {
 				// Get webinar date in UTC
 				$utc_webinar_date = $webinar->webinar_date + $offset;
 				
-				echo 'Text End Time (EST) '.$action->end_time.'<br/>';
+				//echo 'Text End Time (EST) '.$action->end_time.'<br/>';
 				$end_time = $action->end_time;
 				sscanf($end_time, "%d:%d", $hours, $minutes);
 				$end_time_seconds = $hours * 3600 + $minutes * 60;
 				$end_date_time_seconds = $end_time_seconds + $utc_webinar_date;
-				echo 'Date End Time (UTC) ';
-				echo date('m/d/Y H:i:s', $end_date_time_seconds);
-				echo '<br/>';
+				//echo 'Date End Time (UTC) ';
+				//echo date('m/d/Y H:i:s', $end_date_time_seconds);
+				//echo '<br/>';
 				// If end time is past, run actions
 				if (time() > $end_date_time_seconds) {
-					echo 'before viewers';
+					// Mark action as run
+					$action->run = 1;
+					$action->save();
+					//echo 'before viewers';
 					// Start time in seconds
 					$start_time = $action->start_time;
 					sscanf($start_time, "%d:%d", $hours, $minutes);
@@ -74,22 +77,24 @@ class Inspire extends Command {
 					$viewers = \App\Viewer::where('webinar_id', '=', $webinar->id)->get();
 					//var_dump($viewers);
 					foreach($viewers as $viewer) {
-						echo '<br/><br/>';
-						echo $viewer->email.' '.date('m/d/Y H:i:s', $viewer->start_time).' '.date('m/d/Y H:i:s', $viewer->end_time);
-						echo '<br/><br/>';
-						if ($viewer->end_time == null) {
-							$contacts = $app->findByEmail($viewer->email, array('Id'));
-							var_dump($contacts);
-							if ($contacts != []) {
-								echo $contacts[0]['Id'];
-								$app->grpAssign($contacts[0]['Id'], $action->tag_id);
-							}
-						} else if ( $viewer->end_time > $start_time_seconds ) {
-							$contacts = $app->findByEmail($viewer->email, array('Id'));
-							var_dump($contacts);
-							if ($contacts != []) {
-								echo $contacts[0]['Id'];
-								$app->grpAssign($contacts[0]['Id'], $action->tag_id);
+						//echo '<br/><br/>';
+						//echo $viewer->email.' '.date('m/d/Y H:i:s', $viewer->start_time).' '.date('m/d/Y H:i:s', $viewer->end_time);
+						//echo '<br/><br/>';
+						if ($viewer->email != null) {
+							if ($viewer->end_time == null) {
+								$contacts = $app->findByEmail($viewer->email, array('Id'));
+								//var_dump($contacts);
+								if ($contacts != []) {
+									//echo $contacts[0]['Id'];
+									$app->grpAssign($contacts[0]['Id'], $action->tag_id);
+								}
+							} else if ( $viewer->end_time > $start_time_seconds ) {
+								$contacts = $app->findByEmail($viewer->email, array('Id'));
+								//var_dump($contacts);
+								if ($contacts != []) {
+									//echo $contacts[0]['Id'];
+									$app->grpAssign($contacts[0]['Id'], $action->tag_id);
+								}
 							}
 						}
 					}

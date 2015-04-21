@@ -5,12 +5,12 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<div class="panel panel-default">
-				<div class="panel-heading">Webinar Infusionsoft Tagging Options</div>
+				<div class="panel-heading">Tracking Script&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/webinar"><small>back to Webinars</small></a></div>
 
 				<div class="panel-body">
 					<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
 jQuery(document).ready(function() {
-	var webinar_id = {{ $id }};
+	var webinar_id = 1;
 	var email = getURLParameter('email');
 	if (email != null) {
 		jQuery.ajax
@@ -25,7 +25,11 @@ jQuery(document).ready(function() {
 		    console.log(data.success); 
 		  }
 		});
-		jQuery(window).bind('beforeunload', function(event) {
+	}
+	function getURLParameter(name) {
+	  return decodeURIComponent((new RegExp('[?|&amp;]' + name + '=' + '([^&amp;;]+?)(&amp;|#|;|$)').exec(location.search)||[,&quot;&quot;])[1].replace(/\+/g, '%20'))||null
+	}
+jQuery(window).bind('beforeunload', function(event) {
 		    	event.stopPropagation();
 		        jQuery.ajax
 			({
@@ -39,11 +43,8 @@ jQuery(document).ready(function() {
 			    console.log(data.success); 
 			  }
 			});
+return 'Are you sure want to leave the livestream?';
 		});
-	}
-	function getURLParameter(name) {
-	  return decodeURIComponent((new RegExp('[?|&amp;]' + name + '=' + '([^&amp;;]+?)(&amp;|#|;|$)').exec(location.search)||[,&quot;&quot;])[1].replace(/\+/g, '%20'))||null
-	}
 });
 &lt;/script&gt;</code></pre>
 

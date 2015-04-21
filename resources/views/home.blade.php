@@ -8,36 +8,19 @@
 				<div class="panel-heading">Webinars</div>
 
 				<div class="panel-body">
-					<div class="row">
-						<div class="col-sm-3">
-							Webinar Date
-						</div>
-						<div class="col-sm-3">
-							Webinar Name
-						</div>
-						<div class="col-sm-3">
-							Viewers
-						</div>
-						<div class="col-sm-3">
-							Embed Script
-						</div>
-					</div>
 					@foreach( $webinars as $webinar )
 						<div class="row webinar">
-							<div class="col-sm-3">
-								{{ $webinar->webinar_date }}
+							<div class="col-sm-2">
+								<button class="btn" type="button">{{ $webinar->webinar_date }}</button>
 							</div>
-							<div class="col-sm-3">
-								<a href="/webinar/{{ $webinar->id }}/edit/">{{ $webinar->webinar_name }}</a>
+							<div class="col-sm-5">
+								<h4>{{ $webinar->webinar_name }}</h4>
 							</div>
-							<div class="col-sm-3">
-								<a href="/viewers/{{ $webinar->id}}">See Viewers</a>
-							</div>
-							<div class="col-sm-3">
-								<a href="/script/{{ $webinar->id}}">View Script</a>
+							<div class="col-sm-5 force-right">
+								<a class="btn btn-success" href="/testcmd" target="_blank">Apply Tags</a><a class="btn btn-warning" href="/viewers/{{ $webinar->id}}">Viewers</a><a class="btn btn-info" href="/script/{{ $webinar->id}}">Script</a><a class="btn btn-primary" href="/webinar/{{ $webinar->id }}/edit/">Edit</a>
 							</div>
 						</div>
-					
+						<hr/>
 					@endforeach
 				</div>
 			</div>
@@ -46,15 +29,21 @@
 </div>
 <style>
 .webinar {
-	padding:20px 0px;
+	padding:10px 0px;
 	margin:10px 0px;
-	border:1px solid #c9c9c9;
-}
-.webinar:hover {
-	background-color:#f9f9f9;
+	border:0px solid #c9c9c9;
 }
 .webinar a {
 	text-decoration:none;
+}
+.webinar .btn {
+	margin-right:10px;
+}
+.force-right a {
+	float:right;
+}
+.webinar h4 {
+	font-size:16px;
 }
 </style>
 @endsection

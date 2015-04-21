@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<div class="panel panel-default">
-				<div class="panel-heading">Webinar Infusionsoft Tagging Options</div>
+				<div class="panel-heading">Edit Webinar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/webinar"><small>back to Webinars</small></a></div>
 
 				<div class="panel-body">
 					<form class="form" action="/webinar/{{ $webinar->id }}" method="POST">
