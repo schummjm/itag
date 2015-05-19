@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e54f2307c0b14c743a996838ef21e7ca",
+    "hash": "24c3946acc997e3f3eca7fc5c99585b2",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -221,52 +221,6 @@
                 "string"
             ],
             "time": "2014-12-20 21:24:13"
-        },
-        {
-            "name": "infusionsoft/php-isdk",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/infusionsoft/PHP-iSDK.git",
-                "reference": "69936fdf250819d703c9bdb1578408988b70c08f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/infusionsoft/PHP-iSDK/zipball/69936fdf250819d703c9bdb1578408988b70c08f",
-                "reference": "69936fdf250819d703c9bdb1578408988b70c08f",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "php": ">=5.2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/isdk.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Infusionsoft",
-                    "homepage": "https://developer.infusionsoft.com"
-                }
-            ],
-            "description": "The Official Infusionsoft API PHP SDK",
-            "homepage": "https://developer.infusionsoft.com",
-            "keywords": [
-                "api",
-                "infusion",
-                "infusionsoft",
-                "infusionsoft-api",
-                "marketing",
-                "php-infusionsoft-api"
-            ],
-            "time": "2015-01-27 18:03:26"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -2870,9 +2824,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "infusionsoft/php-isdk": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
