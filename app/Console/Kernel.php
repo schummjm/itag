@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel {
 		/*$cron_log = new \App\CronLog();
 		$cron_log->info = "Kernel Running";
 		$cron_log->save();*/
-		$schedule->command('inspire')->everyFiveMinutes();
+		//$schedule->command('inspire')->everyFiveMinutes();
 	}
 
 }

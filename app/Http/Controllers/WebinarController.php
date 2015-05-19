@@ -11,7 +11,7 @@ class WebinarController extends Controller {
 	public function actions($webinar_id)
 	{
 		$actions = \App\Action::where('webinar_id', '=', $webinar_id)->get();
-		return view('actions')->withActions($actions);
+		return view('actions')->withActions($actions)->withWebinar_id($webinar_id);
 	}
 
 	public function script($webinar_id) 

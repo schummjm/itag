@@ -39,7 +39,7 @@
 						@foreach($actions as $action)
 						<input type="hidden" name="action_id[]" value="{{ $action->id }}">
 						<div class="row action">
-							<div class="col-sm-4">
+							<div class="col-sm-3">
 								<div class="form-group">
 									<label>Action Name</label>
 									<input type="text" class="form-control" name="action_name[]" placeholder="" required value="{{ $action->name }}" />
@@ -59,13 +59,19 @@
 							</div>
 							<div class="col-sm-2">
 								<div class="form-group">
-									<label>Tag Id</label>
-									<input type="text" class="form-control" name="tag_id[]" placeholder="" required value="{{ $action->tag_id }}" />
+									<label>Length (minutes)</label>
+									<input type="text" class="form-control" name="length[]" placeholder="" required value="{{ $action->length }}" />
 								</div>
 							</div>
 							<div class="col-sm-2">
 								<div class="form-group">
-									<a href="/action/delete/{{ $webinar->id }}/{{ $action->id }}" class="btn btn-danger" style="margin-top:24px;">Delete Action</a>
+									<label>Tag Id</label>
+									<input type="text" class="form-control" name="tag_id[]" placeholder="" required value="{{ $action->tag_id }}" />
+								</div>
+							</div>
+							<div class="col-sm-1">
+								<div class="form-group">
+									<a href="/action/delete/{{ $webinar->id }}/{{ $action->id }}" class="btn btn-danger" style="margin-top:24px; padding-left:5px; padding-right:5px;">Delete</a>
 								</div>
 							</div>
 						</div>
@@ -93,7 +99,7 @@ jQuery(document).ready(function() {
 	var i = 1;
 	jQuery('#more-actions').on('click', function() {
 
-		jQuery('<div class="row action" id="'+i+'"><input type="hidden" name="action_id[]" value=""><div class="col-sm-4"><div class="form-group"><label>Action Name</label><input type="text" class="form-control" name="action_name[]" placeholder="" required /></div></div><div class="col-sm-2"><div class="form-group"><label>Start Time (EST)</label><input type="time" class="form-control" name="start_time[]" placeholder="" required /></div></div><div class="col-sm-2"><div class="form-group"><label>End Time (EST)</label><input type="time" class="form-control" name="end_time[]" placeholder="" required /></div></div><div class="col-sm-2"><div class="form-group"><label>Tag Id</label><input type="text" class="form-control" name="tag_id[]" placeholder="" required /></div></div><div class="col-sm-2"><div class="form-group"><button class="btn btn-danger"  type="button" style="margin-top:24px;" onClick="deleteMe(\'#'+i+'\')">Delete Action</button></div></div></div>').insertBefore('#more-actions');
+		jQuery('<div class="row action" id="'+i+'"><input type="hidden" name="action_id[]" value=""><div class="col-sm-3"><div class="form-group"><label>Action Name</label><input type="text" class="form-control" name="action_name[]" placeholder="" required /></div></div><div class="col-sm-2"><div class="form-group"><label>Start Time (EST)</label><input type="time" class="form-control" name="start_time[]" placeholder="" required /></div></div><div class="col-sm-2"><div class="form-group"><label>End Time (EST)</label><input type="time" class="form-control" name="end_time[]" placeholder="" required /></div></div><div class="col-sm-2"><div class="form-group"><label>Length (minutes)</label><input type="text" class="form-control" name="length[]" placeholder="" required value="{{ $action->length }}" /></div></div><div class="col-sm-2"><div class="form-group"><label>Tag Id</label><input type="text" class="form-control" name="tag_id[]" placeholder="" required /></div></div><div class="col-sm-1"><div class="form-group"><button class="btn btn-danger"  type="button" style="margin-top:24px; padding-left:5px; padding-right:5px;" onClick="deleteMe(\'#'+i+'\')">Delete</button></div></div></div>').insertBefore('#more-actions');
 		i++;
 
 	});

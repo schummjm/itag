@@ -18,6 +18,7 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 </head>
+
 <body>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -53,11 +54,19 @@
 			</div>
 		</div>
 	</nav>
-
+@if(Session::has('success'))
+    <div class="bg-success alert">
+        <h6 style="color:#000; margin:0px; padding:5px;">{{ Session::get('success') }}</h6>
+    </div>
+@endif
 	@yield('content')
 
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script>
+	$(".alert").alert();
+window.setTimeout(function() { $(".alert").alert('close'); }, 2000);
+</script>
 </body>
 </html>

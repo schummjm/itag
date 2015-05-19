@@ -19,6 +19,10 @@ Route::get('home', function() {
 	return redirect('/webinar');
 });
 
+Route::get('/action/single/{webinar}/{action}', 'ActionController@single');
+
+Route::get('/action/all/{webinar}', 'ActionController@all');
+
 Route::get('testcmd', ['middleware' => 'auth', 'uses' => 'WebinarController@cmd']);
 
 Route::group(['middleware' => 'auth'], function() {
