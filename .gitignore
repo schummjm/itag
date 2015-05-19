@@ -2,6 +2,7 @@
 /node_modules
 .env
 .elasticbeanstalk/
+!/vendor/infusionsoft
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
