@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<div class="panel panel-default">
-				<div class="panel-heading">Edit Webinar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/webinar"><small>back to Webinars</small></a></div>
+				<div class="panel-heading">Edit Webinar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/webinar"><small>back to Webinars</small></a><a href="/webinar/delete/{{$webinar->id}}" class="btn btn-danger" style="float:right; padding-top:3px; padding-bottom:3px; font-size:10px;">Delete Webinar</a></div>
 
 				<div class="panel-body">
 					<form class="form" action="/webinar/{{ $webinar->id }}" method="POST">

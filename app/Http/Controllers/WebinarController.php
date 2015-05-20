@@ -19,8 +19,10 @@ class WebinarController extends Controller {
 
 	public function actions($webinar_id)
 	{
+		$webinar = \App\Webinar::find($webinar_id);
+		$webinar_date = date('m/d/Y', $webinar->webinar_date);
 		$actions = \App\Action::where('webinar_id', '=', $webinar_id)->get();
-		return view('actions')->withActions($actions)->withWebinar_id($webinar_id);
+		return view('actions')->withActions($actions)->withWebinar_id($webinar_id)->withWebinar_date($webinar_date);
 	}
 
 	public function script($webinar_id) 
@@ -186,7 +188,12 @@ class WebinarController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$viewers = \App\Viewer::where('webinar_id', '=', $id)->delete();
+		$actions = \App\Action::where('webinar_id', '=', $id)->delete();
+		$webinar = \App\Webinar::find($id);
+		$webinar->delete();
+		return redirect('/webinar');
+
 	}
 
 }

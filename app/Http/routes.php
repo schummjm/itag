@@ -39,6 +39,8 @@ Route::group(['middleware' => 'auth'], function() {
 Route::get('viewers/{webinar_id}', ['middleware' => 'auth', 'uses' => 'WebinarController@viewers']);
 Route::get('/action/delete/{webinar_id}/{action_id}', ['middleware' => 'auth', 'uses' => 'WebinarController@delete_action']);
 
+Route::get('/webinar/delete/{id}', 'WebinarController@destroy');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

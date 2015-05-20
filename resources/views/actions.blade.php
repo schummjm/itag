@@ -12,6 +12,7 @@
 						<thead>
 							<tr>
 								<th>Action Name</th>
+								<th width="150">Date</th>
 								<th width="150">Start Time</th>
 								<th width="150">End Time</th>
 								<th width="150">Tag ID</th>
@@ -23,6 +24,7 @@
 							@foreach($actions as $action)
 							<tr id="{{ $action->id }}">
 								<td>{{ $action->name }}</td>
+								<td>{{ $webinar_date }}</td>
 								<td>{{ $action->start_time }}</td>
 								<td>{{ $action->end_time }}</td>
 								<td>{{ $action->tag_id }}</td>
