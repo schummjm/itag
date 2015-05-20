@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Response;
 use Log;
 
+require_once(app_path().'/Includes/infusionsoft/php-isdk/src/isdk.php');
+
 class ActionController extends Controller {
 
 	public function single( $webinar_id, $action_id ) {

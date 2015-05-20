@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class WebinarController extends Controller {
 
+	public function verify(Request $request) 
+	{
+		$app = new \iSDK();
+		//return ;
+		if($app->cfgCon($request->app_name, $request->api_key)){
+			return 'success';
+		}	
+	}
+
 	public function actions($webinar_id)
 	{
 		$actions = \App\Action::where('webinar_id', '=', $webinar_id)->get();
@@ -142,6 +151,7 @@ class WebinarController extends Controller {
 			    $action->name = $request->action_name[$x];
 			    $action->start_time = $request->start_time[$x];
 			    $action->end_time = $request->end_time[$x];
+			    $action->length = $request->length[$x];
 			    $action->tag_id = $request->tag_id[$x];
 			    $action->save();
 			} else {
@@ -152,6 +162,7 @@ class WebinarController extends Controller {
 			    $action->name = $request->action_name[$x];
 			    $action->start_time = $request->start_time[$x];
 			    $action->end_time = $request->end_time[$x];
+			    $action->length = $request->length[$x];
 			    $action->tag_id = $request->tag_id[$x];
 			    $action->save();
 			}

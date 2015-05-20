@@ -11,6 +11,10 @@
 |
 */
 
+require_once(app_path().'/Includes/infusionsoft/php-isdk/src/isdk.php');
+
+
+
 Route::get('/', function() {
 	return redirect('/webinar');
 });
@@ -18,6 +22,8 @@ Route::get('/', function() {
 Route::get('home', function() {
 	return redirect('/webinar');
 });
+
+Route::post('/conn/test', 'WebinarController@verify');
 
 Route::get('/action/single/{webinar}/{action}', 'ActionController@single');
 
